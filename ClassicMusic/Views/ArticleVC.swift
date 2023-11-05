@@ -36,23 +36,14 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         view.backgroundColor = .white
     }
     
-    @objc func openSlideShow() {
-        let slideShowVC = SlideShowVC(text: label.text!)
-        navigationController?.pushViewController(slideShowVC, animated: true)
-    }
-    
-    @objc func like() {
-        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Operations
@@ -60,18 +51,22 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
         // Scroller
         view.addSubview(scroller)
         scroller.snp.makeConstraints { make in
-            make.top.bottom.width.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-150)
+            make.bottom.width.equalToSuperview()
         }
         let currentWidth = self.view.frame.size.width
         let width = currentWidth - 100
+        let currentHeight = currentWidth * (imageView.image!.size.height / imageView.image!.size.width)
         let height = width * (imageView.image!.size.height / imageView.image!.size.width)
         // Image
         scroller.addSubview(imageView)
+        imageView.layer.shadowOpacity = 0.3
+        imageView.layer.opacity = 0.3
         imageView.snp.makeConstraints { make in
-            make.top.equalTo(scroller.snp.top).offset(50)
-            make.leading.equalTo(scroller.snp.leading).offset(50)
-            make.width.equalTo(width)
-            make.height.equalTo(height)
+            make.top.equalTo(scroller.snp.top)
+            make.leading.equalTo(scroller.snp.leading)
+            make.width.equalTo(scroller.snp.width)
+            make.height.equalTo(currentHeight)
         }
         // Label
         scroller.addSubview(label)
@@ -90,7 +85,15 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
             make.height.equalTo(60)
             make.bottom.equalTo(scroller.snp.bottom)
         }
-        // Button
+        // Slide SHow Button
+        imageView.addSubview(buttonSlideShow)
+        buttonSlideShow.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.top).offset(100)
+            make.leading.equalTo(imageView.snp.leading).offset(50)
+            make.width.equalTo(200)
+            make.height.equalTo(100)
+        }
+        // Navbar Buttons
 //        view.addSubview(buttonSlideShow)
         let firstButtonItem = UIBarButtonItem(title: status, style: .plain, target: self, action: #selector(like))
         let font = UIFont.systemFont(ofSize: 30)
@@ -103,6 +106,15 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
             space,
             secondButtonItem
         ]
+        
+    }
+    
+    @objc func openSlideShow() {
+        let slideShowVC = SlideShowVC(text: label.text!)
+        navigationController?.pushViewController(slideShowVC, animated: true)
+    }
+    
+    @objc func like() {
         
     }
     
