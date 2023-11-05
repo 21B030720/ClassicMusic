@@ -6,6 +6,7 @@
 //
 
 import UIKit
+//import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController.navigationBar.isTranslucent = false
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
-
+//        FirebaseApp.configure()
         return true
     }
 
@@ -37,10 +38,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
+//    func connectFirebase() {
+//        print("Firebase is connected")
+//        Auth.auth().createUser(withEmail: "jacklol@gmail.com", password: "aaaaaaaaa") { [weak self] result, error in
+//            guard let userId = result?.user.uid else {
+//                print(error)
+//                return
+//            }
+//
+//            let newUser = User(id: userId,
+//                               name: "Arslan",
+//                               email: "jacklol@gmail.com",
+//                               joined: Date().timeIntervalSince1970)
+//
+//            let db = Firestore.firestore()
+//
+//            db.collection("users")
+//                .document(userId)
+//                .setData(newUser.asDictionary())
+//            print("Firebase is connected 2")
+//
+//        }
+//        print("Firebase is connected 3")
+//    }
     
 
     
 
 }
+
 

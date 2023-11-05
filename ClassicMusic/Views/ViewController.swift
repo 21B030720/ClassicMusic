@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import SnapKit
+//import FirebaseFirestore
+//import FirebaseAuth
 
 
 protocol ViewControllerDelegate {
@@ -13,30 +16,28 @@ protocol ViewControllerDelegate {
 }
 
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-
-//    var delegate: ViewControllerDelegate?
-    
     var collection: UICollectionView!
     
     // Init
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        self.title = "Pedia"
         setupUI()
+//        connectFirebase()
     }
     
     func setupUI() {
         let layout = UICollectionViewFlowLayout()
         collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
         // Collection Constraints
         view.addSubview(collection)
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        collection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        collection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40).isActive = true
-        collection.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        
+        collection.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-40)
+        }
         collection.dataSource = self
         collection.delegate = self
         collection.register(TitleCell.self, forCellWithReuseIdentifier: "cell")
@@ -81,51 +82,5 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
 
-}
-
-
-
-class TitleCell: UICollectionViewCell {
-//    let content: UIImageView = UIImageView()
-    let content: UIView = UIView()
-    let imageView: UIImageView = UIImageView()
-    let labelView: UILabel = UILabel()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(content)
-        content.translatesAutoresizingMaskIntoConstraints = false
-        content.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        content.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        content.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 100).isActive = true
-        content.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
-        
-        content.addSubview(imageView)
-        content.addSubview(labelView)
-        setupImageView()
-        setupTextView()
-        
-    }
-    
-    func setupImageView() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leftAnchor.constraint(equalTo: content.leftAnchor, constant: 10).isActive = true
-        imageView.topAnchor.constraint(equalTo: content.topAnchor).isActive = true
-//        imageView.rightAnchor.constraint(equalTo: content.rightAnchor).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: bounds.width ).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: bounds.height - 100).isActive = true
-    }
-    
-    func setupTextView() {
-        labelView.translatesAutoresizingMaskIntoConstraints = false
-        labelView.leftAnchor.constraint(equalTo: content.leftAnchor).isActive = true
-        labelView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
-        labelView.rightAnchor.constraint(equalTo: content.rightAnchor).isActive = true
-        labelView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder: ) has not been emplemented")
-    }
 }
 

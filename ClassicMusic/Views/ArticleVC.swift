@@ -8,15 +8,24 @@
 import UIKit
 import AVKit
 import AVFoundation
+import SnapKit
 
 
 //ViewControllerDelegate
 class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     // MARK: - Attributes
+    let status = "+"
     let scroller: UIScrollView = UIScrollView()
     var imageView: UIImageView // Image of Person
     var label: UILabel // Text about Person
     let player: PlayerView = PlayerView()
+    let buttonSlideShow: UIButton = {
+        let content = UIButton()
+        content.setTitle("SlideShow", for: .normal)
+        content.backgroundColor = .red
+        content.addTarget(self, action: #selector(openSlideShow), for: .touchUpInside)
+        return content
+    }()
     
     
     // MARK: - Init
@@ -34,50 +43,67 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-//        setupScroller()
         view.backgroundColor = .white
+    }
+    
+    @objc func openSlideShow() {
+        let slideShowVC = SlideShowVC(text: label.text!)
+        navigationController?.pushViewController(slideShowVC, animated: true)
+    }
+    
+    @objc func like() {
+        
     }
     
     // MARK: - Operations
     func setupUI() {
+        // Scroller
         view.addSubview(scroller)
-        scroller.translatesAutoresizingMaskIntoConstraints = false
+        scroller.snp.makeConstraints { make in
+            make.top.bottom.width.equalToSuperview()
+        }
         let currentWidth = self.view.frame.size.width
         let width = currentWidth - 100
         let height = width * (imageView.image!.size.height / imageView.image!.size.width)
         // Image
         scroller.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.snp.makeConstraints { make in
+            make.top.equalTo(scroller.snp.top).offset(50)
+            make.leading.equalTo(scroller.snp.leading).offset(50)
+            make.width.equalTo(width)
+            make.height.equalTo(height)
+        }
         // Label
         scroller.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(20)
+            make.leading.equalTo(scroller.snp.leading).offset(20)
+            make.width.equalTo(width + 60)
+        }
         // Player
         scroller.addSubview(player)
-        player.translatesAutoresizingMaskIntoConstraints = false
+        player.snp.makeConstraints { make in
+            make.top.equalTo(label.snp.bottom).offset(20)
+            make.leading.equalTo(scroller.snp.leading).offset(20)
+            make.width.equalTo(width+60)
+            make.height.equalTo(60)
+            make.bottom.equalTo(scroller.snp.bottom)
+        }
+        // Button
+//        view.addSubview(buttonSlideShow)
+        let firstButtonItem = UIBarButtonItem(title: status, style: .plain, target: self, action: #selector(like))
+        let font = UIFont.systemFont(ofSize: 30)
+        firstButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        space.width = 40
+        let secondButtonItem = UIBarButtonItem(title: "Slide Show", style: .plain, target: self, action: #selector(openSlideShow))
+        navigationItem.rightBarButtonItems = [
+            firstButtonItem,
+            space,
+            secondButtonItem
+        ]
         
-        
-        NSLayoutConstraint.activate([
-            scroller.topAnchor.constraint(equalTo: view.topAnchor),
-            scroller.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scroller.widthAnchor.constraint(equalTo: view.widthAnchor),
-            // Image
-            imageView.topAnchor.constraint(equalTo: scroller.topAnchor, constant: 50),
-            imageView.leadingAnchor.constraint(equalTo: scroller.leadingAnchor, constant: 50),
-            imageView.widthAnchor.constraint(equalToConstant: width),
-            imageView.heightAnchor.constraint(equalToConstant: height),
-            // Text
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            label.leadingAnchor.constraint(equalTo: scroller.leadingAnchor, constant: 20),
-            label.widthAnchor.constraint(equalToConstant: width + 60),
-//            label.bottomAnchor.constraint(equalTo: scroller.bottomAnchor),
-            // Player
-            player.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
-            player.leadingAnchor.constraint(equalTo: scroller.leadingAnchor, constant: 20),
-            player.widthAnchor.constraint(equalToConstant: width + 60),
-            player.heightAnchor.constraint(equalToConstant: 60),
-            player.bottomAnchor.constraint(equalTo: scroller.bottomAnchor),
-        ])
     }
     
     /*
