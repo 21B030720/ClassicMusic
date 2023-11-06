@@ -73,3 +73,11 @@ func thirdPlayer() {
 }
 
 */
+
+
+
+//        imageView.clipsToBounds = true;
+//        imageView.layer.opacity = 0.3
+//        imageView.contentMode = .scaleAspectFill
+//        imageView.backgroundColor = UIColor(patternImage: imageView.image!)
+//        imageView.contentMode = .scaleToFill

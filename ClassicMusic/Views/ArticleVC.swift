@@ -17,13 +17,16 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     let status = "+"
     let scroller: UIScrollView = UIScrollView()
     var imageView: UIImageView // Image of Person
+    let imageBackground: UIView = UIView()
     var label: UILabel // Text about Person
     let player: PlayerView = PlayerView()
     let buttonSlideShow: UIButton = {
         let content = UIButton()
         content.setTitle("SlideShow", for: .normal)
-        content.backgroundColor = .red
         content.addTarget(self, action: #selector(openSlideShow), for: .touchUpInside)
+        content.tintColor = .systemTeal
+        content.alpha = 0.7
+        content.backgroundColor = .blue
         return content
     }()
     
@@ -40,6 +43,10 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
         super.viewDidLoad()
         setupUI()
         view.backgroundColor = .white
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     required init?(coder: NSCoder) {
@@ -60,13 +67,26 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
         let height = width * (imageView.image!.size.height / imageView.image!.size.width)
         // Image
         scroller.addSubview(imageView)
+        imageView.isUserInteractionEnabled = true
         imageView.layer.shadowOpacity = 0.3
-        imageView.layer.opacity = 0.3
+        imageView.layer.shadowOffset = CGSize(width: 10, height: 10)
+        imageView.contentMode = .center
+        imageView.clipsToBounds = true;
+
         imageView.snp.makeConstraints { make in
             make.top.equalTo(scroller.snp.top)
             make.leading.equalTo(scroller.snp.leading)
             make.width.equalTo(scroller.snp.width)
-            make.height.equalTo(currentHeight)
+            make.height.equalTo(200)
+        }
+        // Slide Show Button
+        let widthOfScreen = (self.view.frame.size.width - 200) / 2
+        imageView.addSubview(buttonSlideShow)
+        buttonSlideShow.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.top).offset(140)
+            make.leading.equalTo(imageView.snp.leading).offset(widthOfScreen)
+            make.width.equalTo(200)
+            make.height.equalTo(50)
         }
         // Label
         scroller.addSubview(label)
@@ -85,17 +105,9 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
             make.height.equalTo(60)
             make.bottom.equalTo(scroller.snp.bottom)
         }
-        // Slide SHow Button
-        imageView.addSubview(buttonSlideShow)
-        buttonSlideShow.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.top).offset(100)
-            make.leading.equalTo(imageView.snp.leading).offset(50)
-            make.width.equalTo(200)
-            make.height.equalTo(100)
-        }
         // Navbar Buttons
 //        view.addSubview(buttonSlideShow)
-        let firstButtonItem = UIBarButtonItem(title: status, style: .plain, target: self, action: #selector(like))
+        let firstButtonItem = UIBarButtonItem(title: status, style: .plain, target: self, action: #selector(options))
         let font = UIFont.systemFont(ofSize: 30)
         firstButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -114,7 +126,7 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
         navigationController?.pushViewController(slideShowVC, animated: true)
     }
     
-    @objc func like() {
+    @objc func options() {
         
     }
     

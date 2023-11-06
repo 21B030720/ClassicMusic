@@ -11,11 +11,11 @@ import SnapKit
 //import FirebaseAuth
 
 
-protocol ViewControllerDelegate {
+protocol PediaDelegate {
 //    func didSelectProduct(imageName: String, text: String)
 }
 
-class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class Pedia: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     var collection: UICollectionView!
     
     // Init
@@ -73,6 +73,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // OnTap Each Cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onTap(indexPath: indexPath)
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     func onTap(indexPath: IndexPath) {
