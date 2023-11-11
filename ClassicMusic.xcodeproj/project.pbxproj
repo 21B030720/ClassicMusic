@@ -14,11 +14,17 @@
 		F528912D2AC14B3B00CBFC0F /* video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F528912C2AC14A2C00CBFC0F /* video1.mp4 */; };
 		F528912F2AC1658600CBFC0F /* audio1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F528912E2AC1658600CBFC0F /* audio1.mp3 */; };
 		F57E320E2AE84EE500D26BB5 /* SlideShowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57E320D2AE84EE500D26BB5 /* SlideShowVC.swift */; };
+		F5888ECA2AFB83F3000D8274 /* PediaPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5888EC92AFB83F3000D8274 /* PediaPresenter.swift */; };
+		F5888ECC2AFB8403000D8274 /* PediaInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5888ECB2AFB8403000D8274 /* PediaInteractor.swift */; };
+		F5888ECE2AFB841E000D8274 /* PediaConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5888ECD2AFB841E000D8274 /* PediaConfigurator.swift */; };
+		F5888ED02AFB842F000D8274 /* PediaRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5888ECF2AFB842F000D8274 /* PediaRouter.swift */; };
+		F5888ED22AFB8444000D8274 /* PediaProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5888ED12AFB8444000D8274 /* PediaProtocols.swift */; };
 		F59817DA2AE82FB7006EDB84 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59817D92AE82FB7006EDB84 /* TitleCell.swift */; };
-		F59817DC2AE83101006EDB84 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59817DB2AE83101006EDB84 /* User.swift */; };
 		F59817DE2AE83146006EDB84 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59817DD2AE83146006EDB84 /* Extensions.swift */; };
 		F59864A32AF8EE6E00253F77 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59864A22AF8EE6E00253F77 /* TabBar.swift */; };
 		F59864A52AF8EF5F00253F77 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59864A42AF8EF5F00253F77 /* ProfileVC.swift */; };
+		F59864A72AF92B5900253F77 /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59864A62AF92B5900253F77 /* CreateVC.swift */; };
+		F59864A92AF92E9B00253F77 /* Ideas.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F59864A82AF92E9B00253F77 /* Ideas.rtf */; };
 		F5A6F9DF2AD9310700C2A715 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A6F9DE2AD9310700C2A715 /* PlayerView.swift */; };
 		F5A6F9E12AD9379D00C2A715 /* our_summer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5A6F9E02AD9379D00C2A715 /* our_summer.mp3 */; };
 		F5A6F9E52AD9385400C2A715 /* stalevar_street.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5A6F9E42AD9385400C2A715 /* stalevar_street.mp3 */; };
@@ -33,13 +39,12 @@
 		F5C0181D2A7D5F1800E89C53 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C0181C2A7D5F1800E89C53 /* Data.swift */; };
 		F5F357C02A6E684700D7E0C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357BF2A6E684700D7E0C4 /* AppDelegate.swift */; };
 		F5F357C22A6E684700D7E0C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357C12A6E684700D7E0C4 /* SceneDelegate.swift */; };
-		F5F357C42A6E684700D7E0C4 /* Pedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357C32A6E684700D7E0C4 /* Pedia.swift */; };
+		F5F357C42A6E684700D7E0C4 /* PediaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357C32A6E684700D7E0C4 /* PediaVC.swift */; };
 		F5F357C92A6E684C00D7E0C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5F357C82A6E684C00D7E0C4 /* Assets.xcassets */; };
 		F5F357CC2A6E684C00D7E0C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5F357CA2A6E684C00D7E0C4 /* LaunchScreen.storyboard */; };
 		F5F357D72A6E684C00D7E0C4 /* ClassicMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357D62A6E684C00D7E0C4 /* ClassicMusicTests.swift */; };
 		F5F357E12A6E684D00D7E0C4 /* ClassicMusicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357E02A6E684D00D7E0C4 /* ClassicMusicUITests.swift */; };
 		F5F357E32A6E684D00D7E0C4 /* ClassicMusicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357E22A6E684D00D7E0C4 /* ClassicMusicUITestsLaunchTests.swift */; };
-		F5F357F02A6E8EB900D7E0C4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357EF2A6E8EB900D7E0C4 /* Theme.swift */; };
 		F5F357F72A6E947200D7E0C4 /* TitleCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357F62A6E947200D7E0C4 /* TitleCollection.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,11 +79,17 @@
 		F528912C2AC14A2C00CBFC0F /* video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video1.mp4; sourceTree = "<group>"; };
 		F528912E2AC1658600CBFC0F /* audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio1.mp3; sourceTree = "<group>"; };
 		F57E320D2AE84EE500D26BB5 /* SlideShowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowVC.swift; sourceTree = "<group>"; };
+		F5888EC92AFB83F3000D8274 /* PediaPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaPresenter.swift; sourceTree = "<group>"; };
+		F5888ECB2AFB8403000D8274 /* PediaInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaInteractor.swift; sourceTree = "<group>"; };
+		F5888ECD2AFB841E000D8274 /* PediaConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaConfigurator.swift; sourceTree = "<group>"; };
+		F5888ECF2AFB842F000D8274 /* PediaRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaRouter.swift; sourceTree = "<group>"; };
+		F5888ED12AFB8444000D8274 /* PediaProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaProtocols.swift; sourceTree = "<group>"; };
 		F59817D92AE82FB7006EDB84 /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
-		F59817DB2AE83101006EDB84 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F59817DD2AE83146006EDB84 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F59864A22AF8EE6E00253F77 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		F59864A42AF8EF5F00253F77 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		F59864A62AF92B5900253F77 /* CreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
+		F59864A82AF92E9B00253F77 /* Ideas.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Ideas.rtf; sourceTree = "<group>"; };
 		F5A6F9DE2AD9310700C2A715 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		F5A6F9E02AD9379D00C2A715 /* our_summer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = our_summer.mp3; sourceTree = "<group>"; };
 		F5A6F9E42AD9385400C2A715 /* stalevar_street.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stalevar_street.mp3; sourceTree = "<group>"; };
@@ -94,7 +105,7 @@
 		F5F357BC2A6E684700D7E0C4 /* ClassicMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassicMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F357BF2A6E684700D7E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5F357C12A6E684700D7E0C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F5F357C32A6E684700D7E0C4 /* Pedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pedia.swift; sourceTree = "<group>"; };
+		F5F357C32A6E684700D7E0C4 /* PediaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaVC.swift; sourceTree = "<group>"; };
 		F5F357C82A6E684C00D7E0C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5F357CB2A6E684C00D7E0C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5F357CD2A6E684C00D7E0C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,7 +114,6 @@
 		F5F357DC2A6E684D00D7E0C4 /* ClassicMusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClassicMusicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F357E02A6E684D00D7E0C4 /* ClassicMusicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicMusicUITests.swift; sourceTree = "<group>"; };
 		F5F357E22A6E684D00D7E0C4 /* ClassicMusicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicMusicUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F5F357EF2A6E8EB900D7E0C4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		F5F357F62A6E947200D7E0C4 /* TitleCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +180,19 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
+		F5888EC82AFB83C9000D8274 /* Pedia */ = {
+			isa = PBXGroup;
+			children = (
+				F5F357C32A6E684700D7E0C4 /* PediaVC.swift */,
+				F5888ECD2AFB841E000D8274 /* PediaConfigurator.swift */,
+				F5888EC92AFB83F3000D8274 /* PediaPresenter.swift */,
+				F5888ECB2AFB8403000D8274 /* PediaInteractor.swift */,
+				F5888ECF2AFB842F000D8274 /* PediaRouter.swift */,
+				F5888ED12AFB8444000D8274 /* PediaProtocols.swift */,
+			);
+			path = Pedia;
+			sourceTree = "<group>";
+		};
 		F5BEF41B2A791132002DE770 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,14 +228,16 @@
 		F5F357BE2A6E684700D7E0C4 /* ClassicMusic */ = {
 			isa = PBXGroup;
 			children = (
+				F5F357BF2A6E684700D7E0C4 /* AppDelegate.swift */,
+				F5F357C12A6E684700D7E0C4 /* SceneDelegate.swift */,
+				F59817DD2AE83146006EDB84 /* Extensions.swift */,
 				F528912C2AC14A2C00CBFC0F /* video1.mp4 */,
 				F5F357F22A6E8ED900D7E0C4 /* Other */,
-				F5F357F32A6E8EF800D7E0C4 /* Models */,
-				F5F357F42A6E8F1700D7E0C4 /* ModelViews */,
-				F5F357F12A6E8EC200D7E0C4 /* Views */,
+				F5F357F12A6E8EC200D7E0C4 /* Modules */,
 				F5F357C82A6E684C00D7E0C4 /* Assets.xcassets */,
 				F5F357CD2A6E684C00D7E0C4 /* Info.plist */,
 				F528912A2AC1457400CBFC0F /* SimpleBoard.storyboard */,
+				F59864A82AF92E9B00253F77 /* Ideas.rtf */,
 			);
 			path = ClassicMusic;
 			sourceTree = "<group>";
@@ -234,10 +259,10 @@
 			path = ClassicMusicUITests;
 			sourceTree = "<group>";
 		};
-		F5F357F12A6E8EC200D7E0C4 /* Views */ = {
+		F5F357F12A6E8EC200D7E0C4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				F5F357C32A6E684700D7E0C4 /* Pedia.swift */,
+				F5888EC82AFB83C9000D8274 /* Pedia */,
 				F5C0181A2A7D5E7B00E89C53 /* ArticleVC.swift */,
 				F5C0181C2A7D5F1800E89C53 /* Data.swift */,
 				F5A6F9DE2AD9310700C2A715 /* PlayerView.swift */,
@@ -246,8 +271,9 @@
 				F57E320D2AE84EE500D26BB5 /* SlideShowVC.swift */,
 				F59864A22AF8EE6E00253F77 /* TabBar.swift */,
 				F59864A42AF8EF5F00253F77 /* ProfileVC.swift */,
+				F59864A62AF92B5900253F77 /* CreateVC.swift */,
 			);
-			path = Views;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		F5F357F22A6E8ED900D7E0C4 /* Other */ = {
@@ -257,28 +283,9 @@
 				F5F357F62A6E947200D7E0C4 /* TitleCollection.swift */,
 				F5BEF41B2A791132002DE770 /* Images */,
 				F5F357CA2A6E684C00D7E0C4 /* LaunchScreen.storyboard */,
-				F5F357BF2A6E684700D7E0C4 /* AppDelegate.swift */,
-				F5F357C12A6E684700D7E0C4 /* SceneDelegate.swift */,
 				F5A6F9EA2AD9426A00C2A715 /* Trash.swift */,
-				F59817DD2AE83146006EDB84 /* Extensions.swift */,
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		F5F357F32A6E8EF800D7E0C4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F59817DB2AE83101006EDB84 /* User.swift */,
-				F5F357EF2A6E8EB900D7E0C4 /* Theme.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F5F357F42A6E8F1700D7E0C4 /* ModelViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ModelViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +399,7 @@
 			files = (
 				F528912D2AC14B3B00CBFC0F /* video1.mp4 in Resources */,
 				F5A6F9E92AD9388900C2A715 /* tanya.mp3 in Resources */,
+				F59864A92AF92E9B00253F77 /* Ideas.rtf in Resources */,
 				F5BEF4212A79116B002DE770 /* Paganini.jpg in Resources */,
 				F5BEF4202A79116A002DE770 /* Beethoven.jpg in Resources */,
 				F5A6F9E12AD9379D00C2A715 /* our_summer.mp3 in Resources */,
@@ -531,17 +539,21 @@
 			files = (
 				F5A6F9EB2AD9426A00C2A715 /* Trash.swift in Sources */,
 				F59817DA2AE82FB7006EDB84 /* TitleCell.swift in Sources */,
+				F5888ECE2AFB841E000D8274 /* PediaConfigurator.swift in Sources */,
 				F5C0181D2A7D5F1800E89C53 /* Data.swift in Sources */,
-				F5F357C42A6E684700D7E0C4 /* Pedia.swift in Sources */,
+				F59864A72AF92B5900253F77 /* CreateVC.swift in Sources */,
+				F5F357C42A6E684700D7E0C4 /* PediaVC.swift in Sources */,
+				F5888ECC2AFB8403000D8274 /* PediaInteractor.swift in Sources */,
+				F5888ED02AFB842F000D8274 /* PediaRouter.swift in Sources */,
 				F59864A52AF8EF5F00253F77 /* ProfileVC.swift in Sources */,
 				F5C0181B2A7D5E7B00E89C53 /* ArticleVC.swift in Sources */,
 				F5A6F9DF2AD9310700C2A715 /* PlayerView.swift in Sources */,
-				F5F357F02A6E8EB900D7E0C4 /* Theme.swift in Sources */,
+				F5888ED22AFB8444000D8274 /* PediaProtocols.swift in Sources */,
 				F57E320E2AE84EE500D26BB5 /* SlideShowVC.swift in Sources */,
 				F5F357C02A6E684700D7E0C4 /* AppDelegate.swift in Sources */,
+				F5888ECA2AFB83F3000D8274 /* PediaPresenter.swift in Sources */,
 				F59864A32AF8EE6E00253F77 /* TabBar.swift in Sources */,
 				F59817DE2AE83146006EDB84 /* Extensions.swift in Sources */,
-				F59817DC2AE83101006EDB84 /* User.swift in Sources */,
 				F5F357C22A6E684700D7E0C4 /* SceneDelegate.swift in Sources */,
 				F5A6F9ED2AD9622C00C2A715 /* MiniPlayerView.swift in Sources */,
 				F5F357F72A6E947200D7E0C4 /* TitleCollection.swift in Sources */,

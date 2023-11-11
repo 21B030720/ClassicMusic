@@ -16,7 +16,7 @@ class TabBar: UITabBarController {
     }
     
     private func setupTabs() {
-        let pedia = self.createNAvBar(with: "Pedia", and: UIImage(systemName: "book.fill"), vc: Pedia())
+        let pedia = self.createNAvBar(with: "Pedia", and: UIImage(systemName: "book.fill"), vc: PediaVC())
         let profile = self.createNAvBar(with: "Profile", and: UIImage(systemName: "figure.stand"), vc: ProfileVC())
         self.setViewControllers([pedia, profile], animated: true)
     }
