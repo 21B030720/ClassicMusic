@@ -1,24 +1,18 @@
 //
-//  ArticleVC.swift
+//  ArticleView.swift
 //  ClassicMusic
 //
-//  Created by Arslan Toimbekov on 04.08.2023.
+//  Created by Arslan Toimbekov on 02.12.2023.
 //
 
 import UIKit
-import AVKit
-import AVFoundation
-import SnapKit
 
-
-//ViewControllerDelegate
-class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
-    // MARK: - Attributes
+class ArticleView: UIView {
     let status = "+"
     let scroller: UIScrollView = UIScrollView()
-    var imageView: UIImageView // Image of Person
+    var imageView: UIImageView! // Image of Person
     let imageBackground: UIView = UIView()
-    var label: UILabel // Text about Person
+    var label: UILabel! // Text about Person
     let player: PlayerView = PlayerView()
     let buttonSlideShow: UIButton = {
         let content = UIButton()
@@ -29,43 +23,57 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
         content.backgroundColor = .blue
         return content
     }()
-    
-    
-    // MARK: - Init
-    init(imageName: String, text: String) {
-        imageView = UIImageView(image: UIImage(named: imageName))
-        label = UILabel()
-        label.text = text
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        view.backgroundColor = .white
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+    let optionalButtonsView: UIView = {
+        let content = UIView()
+        return content
+    }()
+    let musicButton: UIButton = {
+        let content: UIButton = UIButton()
+        content.setImage(UIImage(systemName: "fleuron.fill"), for: .normal)
+        content.backgroundColor = .clear
+        return content
+    }()
+    weak var viewController: ArticleVC!
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Operations
     func setupUI() {
+        // Scroll View
+        setupScroller()
+        // Image
+        setupImage()
+        // Slide Show Button
+        setupSlideShowButton()
+        // Optional Buttons
+        setupOptionalButtons()
+        // Label
+        setupLabel()
+        // Player
+        setupPlayer()
+        // Navbar Buttons
+        setupNavBar()
+    }
+    
+    func setupScroller() {
         // Scroller
-        view.addSubview(scroller)
+        addSubview(scroller)
         scroller.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(-150)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(-150)
             make.bottom.width.equalToSuperview()
         }
-        let currentWidth = self.view.frame.size.width
-        let width = currentWidth - 100
-        let currentHeight = currentWidth * (imageView.image!.size.height / imageView.image!.size.width)
-        let height = width * (imageView.image!.size.height / imageView.image!.size.width)
-        // Image
+//        let currentWidth = self.viewController.view.frame.size.width
+//        let width = currentWidth - 100
+//        let currentHeight = currentWidth * (imageView.image!.size.height / imageView.image!.size.width)
+//        let height = width * (imageView.image!.size.height / imageView.image!.size.width)
+    }
+    
+    func setupImage() {
         scroller.addSubview(imageView)
         imageView.isUserInteractionEnabled = true
         imageView.layer.shadowOpacity = 0.3
@@ -77,10 +85,13 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
             make.top.equalTo(scroller.snp.top)
             make.leading.equalTo(scroller.snp.leading)
             make.width.equalTo(scroller.snp.width)
-            make.height.equalTo(200)
+            make.height.equalTo(228)
         }
-        // Slide Show Button
-        let widthOfScreen = (self.view.frame.size.width - 200) / 2
+    }
+    
+    func setupSlideShowButton() {
+        let widthOfScreen = (UIScreen.main.bounds.width - 200) / 2
+        print("Width of view", widthOfScreen)
         imageView.addSubview(buttonSlideShow)
         buttonSlideShow.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.top).offset(140)
@@ -88,15 +99,24 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
-        // Label
+    }
+    
+    func setupLabel() {
+        let currentWidth = UIScreen.main.bounds.width
+        let width = currentWidth - 100
         scroller.addSubview(label)
+        label.backgroundColor = .blue
         label.numberOfLines = 0
         label.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(20)
             make.leading.equalTo(scroller.snp.leading).offset(20)
             make.width.equalTo(width + 60)
         }
-        // Player
+    }
+    
+    func setupPlayer() {
+        let currentWidth = UIScreen.main.bounds.width
+        let width = currentWidth - 100
         scroller.addSubview(player)
         player.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom).offset(20)
@@ -105,39 +125,37 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
             make.height.equalTo(60)
             make.bottom.equalTo(scroller.snp.bottom)
         }
-        // Navbar Buttons
-//        view.addSubview(buttonSlideShow)
+    }
+    
+    func setupNavBar() {
         let firstButtonItem = UIBarButtonItem(title: status, style: .plain, target: self, action: #selector(options))
         let font = UIFont.systemFont(ofSize: 30)
         firstButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         space.width = 40
         let secondButtonItem = UIBarButtonItem(title: "Slide Show", style: .plain, target: self, action: #selector(openSlideShow))
-        navigationItem.rightBarButtonItems = [
+        viewController.navigationItem.rightBarButtonItems = [
             firstButtonItem,
             space,
             secondButtonItem
         ]
-        
     }
     
-    @objc func openSlideShow() {
-        let slideShowVC = SlideShowVC(text: label.text!)
-        navigationController?.pushViewController(slideShowVC, animated: true)
+    func setupOptionalButtons() {
+//        let newView = UIView()
+//        newView.backgroundColor = #colorLiteral(red: 0.6914221048, green: 0.5730599165, blue: 0.5702240467, alpha: 1)
+//        addSubview(newView)
+//        newView.snp.makeConstraints { make in
+//            <#code#>
+//        }
     }
     
     @objc func options() {
-        
+        viewController.options()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func openSlideShow() {
+        viewController.openSlideShow()
     }
-    */
 
 }

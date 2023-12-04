@@ -16,7 +16,7 @@ protocol PediaDelegate {
 }
 
 class PediaVC: UIViewController, PediaViewControllerProtocol  {
-
+    let dataSource = PediaDataSource()
     var presenter: PediaPresenterProtocol!
     var collection: UICollectionView!
     var configurator: PediaConfiguratorProtocol = PediaConfigurator()
@@ -44,26 +44,15 @@ class PediaVC: UIViewController, PediaViewControllerProtocol  {
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview().offset(-40)
         }
-        collection.dataSource = self
+        collection.dataSource = dataSource
+        dataSource.view = self
         collection.delegate = self
         collection.register(TitleCell.self, forCellWithReuseIdentifier: "cell")
     }
     
 }
 
-extension PediaVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    
-    // Number of Cells
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return titles.count
-    }
-    
-    // Setup Data of Each Cell
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TitleCell
-        presenter.loadCertainTitle(id: indexPath.row, for: cell)
-        return cell
-    }
+extension PediaVC: UICollectionViewDelegateFlowLayout {
     
     // Size of Each Cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

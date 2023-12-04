@@ -11,8 +11,16 @@ class TabBar: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let appearance = UITabBarAppearance()
+//        appearance.backgroundColor = .blue
+//        tabBar.standardAppearance = appearance
         self.setupTabs()
-        // Do any additional setup after loading the view.
+        
+        self.tabBar.barTintColor = #colorLiteral(red: 0.5803921569, green: 0.4941176471, blue: 0.4941176471, alpha: 1)
+        self.tabBar.backgroundColor = #colorLiteral(red: 0.5803921569, green: 0.4941176471, blue: 0.4941176471, alpha: 1)
+        tabBar.unselectedItemTintColor = .blue
+        tabBar.unselectedItemTintColor = .white
+        
     }
     
     private func setupTabs() {
@@ -20,7 +28,7 @@ class TabBar: UITabBarController {
         let profile = self.createNAvBar(with: "Profile", and: UIImage(systemName: "figure.stand"), vc: ProfileVC())
         self.setViewControllers([pedia, profile], animated: true)
     }
-    
+
     private func createNAvBar(with title: String, and image: UIImage?, vc: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: vc)
         nav.tabBarItem.title = title

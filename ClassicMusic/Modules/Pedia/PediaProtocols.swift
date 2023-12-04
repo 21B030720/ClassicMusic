@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PediaViewControllerProtocol: class {
     func setupCollectionView()
+    var presenter: PediaPresenterProtocol! { get set }
+    var collection: UICollectionView! { get set }
 }
 
 protocol PediaConfiguratorProtocol: class {

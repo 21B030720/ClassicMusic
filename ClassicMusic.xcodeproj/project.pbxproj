@@ -10,6 +10,8 @@
 		511614E784A4A131D563B378 /* Pods_ClassicMusicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAB34BBDBA5A1BA0528BC71 /* Pods_ClassicMusicTests.framework */; };
 		552638E6DCDA300965605311 /* Pods_ClassicMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1348E3B887887FF8ECD00459 /* Pods_ClassicMusic.framework */; };
 		E9A1DD929D0068050BC29CBF /* Pods_ClassicMusic_ClassicMusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008A7476F9D906187489C7DD /* Pods_ClassicMusic_ClassicMusicUITests.framework */; };
+		F513C6F72B0E157500651DB9 /* PediaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513C6F62B0E157500651DB9 /* PediaDataSource.swift */; };
+		F513C6F92B0E175100651DB9 /* PediaVCCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513C6F82B0E175100651DB9 /* PediaVCCopy.swift */; };
 		F528912B2AC1457400CBFC0F /* SimpleBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F528912A2AC1457400CBFC0F /* SimpleBoard.storyboard */; };
 		F528912D2AC14B3B00CBFC0F /* video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F528912C2AC14A2C00CBFC0F /* video1.mp4 */; };
 		F528912F2AC1658600CBFC0F /* audio1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F528912E2AC1658600CBFC0F /* audio1.mp3 */; };
@@ -37,6 +39,8 @@
 		F5BEF4222A79116B002DE770 /* Tchaikovsky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5BEF41F2A79116A002DE770 /* Tchaikovsky.jpg */; };
 		F5C0181B2A7D5E7B00E89C53 /* ArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C0181A2A7D5E7B00E89C53 /* ArticleVC.swift */; };
 		F5C0181D2A7D5F1800E89C53 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C0181C2A7D5F1800E89C53 /* Data.swift */; };
+		F5C3D8E92B172DAB00A9E3E9 /* ArticleVCCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C3D8E82B172DAB00A9E3E9 /* ArticleVCCopy.swift */; };
+		F5D6E2DD2B1B453600FEC903 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6E2DC2B1B453600FEC903 /* ArticleView.swift */; };
 		F5F357C02A6E684700D7E0C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357BF2A6E684700D7E0C4 /* AppDelegate.swift */; };
 		F5F357C22A6E684700D7E0C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357C12A6E684700D7E0C4 /* SceneDelegate.swift */; };
 		F5F357C42A6E684700D7E0C4 /* PediaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F357C32A6E684700D7E0C4 /* PediaVC.swift */; };
@@ -75,6 +79,8 @@
 		714532CE7ADDE738FAABDF93 /* Pods-ClassicMusicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassicMusicTests.debug.xcconfig"; path = "Target Support Files/Pods-ClassicMusicTests/Pods-ClassicMusicTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DEAB34BBDBA5A1BA0528BC71 /* Pods_ClassicMusicTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassicMusicTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF06CECB2451D9BDC58030AE /* Pods-ClassicMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassicMusic.release.xcconfig"; path = "Target Support Files/Pods-ClassicMusic/Pods-ClassicMusic.release.xcconfig"; sourceTree = "<group>"; };
+		F513C6F62B0E157500651DB9 /* PediaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaDataSource.swift; sourceTree = "<group>"; };
+		F513C6F82B0E175100651DB9 /* PediaVCCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaVCCopy.swift; sourceTree = "<group>"; };
 		F528912A2AC1457400CBFC0F /* SimpleBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SimpleBoard.storyboard; sourceTree = "<group>"; };
 		F528912C2AC14A2C00CBFC0F /* video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video1.mp4; sourceTree = "<group>"; };
 		F528912E2AC1658600CBFC0F /* audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio1.mp3; sourceTree = "<group>"; };
@@ -102,6 +108,8 @@
 		F5BEF41F2A79116A002DE770 /* Tchaikovsky.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tchaikovsky.jpg; sourceTree = "<group>"; };
 		F5C0181A2A7D5E7B00E89C53 /* ArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVC.swift; sourceTree = "<group>"; };
 		F5C0181C2A7D5F1800E89C53 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		F5C3D8E82B172DAB00A9E3E9 /* ArticleVCCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleVCCopy.swift; sourceTree = "<group>"; };
+		F5D6E2DC2B1B453600FEC903 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		F5F357BC2A6E684700D7E0C4 /* ClassicMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassicMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F357BF2A6E684700D7E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5F357C12A6E684700D7E0C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,11 +192,13 @@
 			isa = PBXGroup;
 			children = (
 				F5F357C32A6E684700D7E0C4 /* PediaVC.swift */,
+				F513C6F62B0E157500651DB9 /* PediaDataSource.swift */,
 				F5888ECD2AFB841E000D8274 /* PediaConfigurator.swift */,
 				F5888EC92AFB83F3000D8274 /* PediaPresenter.swift */,
 				F5888ECB2AFB8403000D8274 /* PediaInteractor.swift */,
 				F5888ECF2AFB842F000D8274 /* PediaRouter.swift */,
 				F5888ED12AFB8444000D8274 /* PediaProtocols.swift */,
+				F513C6F82B0E175100651DB9 /* PediaVCCopy.swift */,
 			);
 			path = Pedia;
 			sourceTree = "<group>";
@@ -201,6 +211,24 @@
 				F5BEF41F2A79116A002DE770 /* Tchaikovsky.jpg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		F5C3D8E42B1703ED00A9E3E9 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				F5D6E2DC2B1B453600FEC903 /* ArticleView.swift */,
+				F5C0181A2A7D5E7B00E89C53 /* ArticleVC.swift */,
+				F5C3D8E82B172DAB00A9E3E9 /* ArticleVCCopy.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
+		F5C3D8E52B17040200A9E3E9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F59864A42AF8EF5F00253F77 /* ProfileVC.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		F5F357B32A6E684700D7E0C4 = {
@@ -262,15 +290,15 @@
 		F5F357F12A6E8EC200D7E0C4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F59864A22AF8EE6E00253F77 /* TabBar.swift */,
 				F5888EC82AFB83C9000D8274 /* Pedia */,
-				F5C0181A2A7D5E7B00E89C53 /* ArticleVC.swift */,
+				F5C3D8E42B1703ED00A9E3E9 /* Article */,
+				F5C3D8E52B17040200A9E3E9 /* Profile */,
 				F5C0181C2A7D5F1800E89C53 /* Data.swift */,
 				F5A6F9DE2AD9310700C2A715 /* PlayerView.swift */,
 				F5A6F9EC2AD9622C00C2A715 /* MiniPlayerView.swift */,
 				F59817D92AE82FB7006EDB84 /* TitleCell.swift */,
 				F57E320D2AE84EE500D26BB5 /* SlideShowVC.swift */,
-				F59864A22AF8EE6E00253F77 /* TabBar.swift */,
-				F59864A42AF8EF5F00253F77 /* ProfileVC.swift */,
 				F59864A62AF92B5900253F77 /* CreateVC.swift */,
 			);
 			path = Modules;
@@ -541,6 +569,7 @@
 				F59817DA2AE82FB7006EDB84 /* TitleCell.swift in Sources */,
 				F5888ECE2AFB841E000D8274 /* PediaConfigurator.swift in Sources */,
 				F5C0181D2A7D5F1800E89C53 /* Data.swift in Sources */,
+				F513C6F72B0E157500651DB9 /* PediaDataSource.swift in Sources */,
 				F59864A72AF92B5900253F77 /* CreateVC.swift in Sources */,
 				F5F357C42A6E684700D7E0C4 /* PediaVC.swift in Sources */,
 				F5888ECC2AFB8403000D8274 /* PediaInteractor.swift in Sources */,
@@ -549,6 +578,8 @@
 				F5C0181B2A7D5E7B00E89C53 /* ArticleVC.swift in Sources */,
 				F5A6F9DF2AD9310700C2A715 /* PlayerView.swift in Sources */,
 				F5888ED22AFB8444000D8274 /* PediaProtocols.swift in Sources */,
+				F5D6E2DD2B1B453600FEC903 /* ArticleView.swift in Sources */,
+				F5C3D8E92B172DAB00A9E3E9 /* ArticleVCCopy.swift in Sources */,
 				F57E320E2AE84EE500D26BB5 /* SlideShowVC.swift in Sources */,
 				F5F357C02A6E684700D7E0C4 /* AppDelegate.swift in Sources */,
 				F5888ECA2AFB83F3000D8274 /* PediaPresenter.swift in Sources */,
@@ -557,6 +588,7 @@
 				F5F357C22A6E684700D7E0C4 /* SceneDelegate.swift in Sources */,
 				F5A6F9ED2AD9622C00C2A715 /* MiniPlayerView.swift in Sources */,
 				F5F357F72A6E947200D7E0C4 /* TitleCollection.swift in Sources */,
+				F513C6F92B0E175100651DB9 /* PediaVCCopy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
