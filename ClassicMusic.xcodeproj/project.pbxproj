@@ -12,6 +12,9 @@
 		E9A1DD929D0068050BC29CBF /* Pods_ClassicMusic_ClassicMusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008A7476F9D906187489C7DD /* Pods_ClassicMusic_ClassicMusicUITests.framework */; };
 		F513C6F72B0E157500651DB9 /* PediaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513C6F62B0E157500651DB9 /* PediaDataSource.swift */; };
 		F513C6F92B0E175100651DB9 /* PediaVCCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513C6F82B0E175100651DB9 /* PediaVCCopy.swift */; };
+		F5277D4C2B28889100F707CA /* ArticleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5277D4B2B28889100F707CA /* ArticleDataSource.swift */; };
+		F5277D502B288A2E00F707CA /* DropperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5277D4F2B288A2E00F707CA /* DropperCell.swift */; };
+		F5277D522B288A4100F707CA /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5277D512B288A4100F707CA /* DropDownCell.swift */; };
 		F528912B2AC1457400CBFC0F /* SimpleBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F528912A2AC1457400CBFC0F /* SimpleBoard.storyboard */; };
 		F528912D2AC14B3B00CBFC0F /* video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F528912C2AC14A2C00CBFC0F /* video1.mp4 */; };
 		F528912F2AC1658600CBFC0F /* audio1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F528912E2AC1658600CBFC0F /* audio1.mp3 */; };
@@ -81,6 +84,9 @@
 		EF06CECB2451D9BDC58030AE /* Pods-ClassicMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassicMusic.release.xcconfig"; path = "Target Support Files/Pods-ClassicMusic/Pods-ClassicMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F513C6F62B0E157500651DB9 /* PediaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaDataSource.swift; sourceTree = "<group>"; };
 		F513C6F82B0E175100651DB9 /* PediaVCCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaVCCopy.swift; sourceTree = "<group>"; };
+		F5277D4B2B28889100F707CA /* ArticleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDataSource.swift; sourceTree = "<group>"; };
+		F5277D4F2B288A2E00F707CA /* DropperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropperCell.swift; sourceTree = "<group>"; };
+		F5277D512B288A4100F707CA /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		F528912A2AC1457400CBFC0F /* SimpleBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SimpleBoard.storyboard; sourceTree = "<group>"; };
 		F528912C2AC14A2C00CBFC0F /* video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video1.mp4; sourceTree = "<group>"; };
 		F528912E2AC1658600CBFC0F /* audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio1.mp3; sourceTree = "<group>"; };
@@ -176,6 +182,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F50639322B1F7659007625AF /* SlideShow */ = {
+			isa = PBXGroup;
+			children = (
+				F57E320D2AE84EE500D26BB5 /* SlideShowVC.swift */,
+			);
+			path = SlideShow;
+			sourceTree = "<group>";
+		};
 		F550B01B2AE290B1007D5C41 /* Music */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +232,9 @@
 			children = (
 				F5D6E2DC2B1B453600FEC903 /* ArticleView.swift */,
 				F5C0181A2A7D5E7B00E89C53 /* ArticleVC.swift */,
+				F5277D4B2B28889100F707CA /* ArticleDataSource.swift */,
+				F5277D4F2B288A2E00F707CA /* DropperCell.swift */,
+				F5277D512B288A4100F707CA /* DropDownCell.swift */,
 				F5C3D8E82B172DAB00A9E3E9 /* ArticleVCCopy.swift */,
 			);
 			path = Article;
@@ -291,14 +308,14 @@
 			isa = PBXGroup;
 			children = (
 				F59864A22AF8EE6E00253F77 /* TabBar.swift */,
+				F59817D92AE82FB7006EDB84 /* TitleCell.swift */,
 				F5888EC82AFB83C9000D8274 /* Pedia */,
 				F5C3D8E42B1703ED00A9E3E9 /* Article */,
 				F5C3D8E52B17040200A9E3E9 /* Profile */,
+				F50639322B1F7659007625AF /* SlideShow */,
 				F5C0181C2A7D5F1800E89C53 /* Data.swift */,
 				F5A6F9DE2AD9310700C2A715 /* PlayerView.swift */,
 				F5A6F9EC2AD9622C00C2A715 /* MiniPlayerView.swift */,
-				F59817D92AE82FB7006EDB84 /* TitleCell.swift */,
-				F57E320D2AE84EE500D26BB5 /* SlideShowVC.swift */,
 				F59864A62AF92B5900253F77 /* CreateVC.swift */,
 			);
 			path = Modules;
@@ -569,10 +586,12 @@
 				F59817DA2AE82FB7006EDB84 /* TitleCell.swift in Sources */,
 				F5888ECE2AFB841E000D8274 /* PediaConfigurator.swift in Sources */,
 				F5C0181D2A7D5F1800E89C53 /* Data.swift in Sources */,
+				F5277D522B288A4100F707CA /* DropDownCell.swift in Sources */,
 				F513C6F72B0E157500651DB9 /* PediaDataSource.swift in Sources */,
 				F59864A72AF92B5900253F77 /* CreateVC.swift in Sources */,
 				F5F357C42A6E684700D7E0C4 /* PediaVC.swift in Sources */,
 				F5888ECC2AFB8403000D8274 /* PediaInteractor.swift in Sources */,
+				F5277D4C2B28889100F707CA /* ArticleDataSource.swift in Sources */,
 				F5888ED02AFB842F000D8274 /* PediaRouter.swift in Sources */,
 				F59864A52AF8EF5F00253F77 /* ProfileVC.swift in Sources */,
 				F5C0181B2A7D5E7B00E89C53 /* ArticleVC.swift in Sources */,
@@ -584,6 +603,7 @@
 				F5F357C02A6E684700D7E0C4 /* AppDelegate.swift in Sources */,
 				F5888ECA2AFB83F3000D8274 /* PediaPresenter.swift in Sources */,
 				F59864A32AF8EE6E00253F77 /* TabBar.swift in Sources */,
+				F5277D502B288A2E00F707CA /* DropperCell.swift in Sources */,
 				F59817DE2AE83146006EDB84 /* Extensions.swift in Sources */,
 				F5F357C22A6E684700D7E0C4 /* SceneDelegate.swift in Sources */,
 				F5A6F9ED2AD9622C00C2A715 /* MiniPlayerView.swift in Sources */,

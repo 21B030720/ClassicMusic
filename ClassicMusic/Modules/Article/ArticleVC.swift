@@ -15,8 +15,8 @@ import SnapKit
 class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     // MARK: - Attributes
     var articleView: ArticleView = ArticleView(frame: .zero)
-
-
+    
+    var dataSource = ArticleDataSource()
     // MARK: - Init
     override func loadView() {
         articleView.viewController = self
@@ -65,4 +65,40 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     }
     */
 
+}
+
+extension ArticleVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        tableView.beginUpdates()
+        
+        let range = indexPath.row+1...indexPath.row+1
+        let indexPaths = range.map { IndexPath(row: $0, section: indexPath.section) }
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? DropperCell {
+            if !cell.isOpened {
+                dataSource.dataSource.insert(contentsOf: [[ dataSource.dataSource[indexPath.row][1], "is not openable" ]], at: indexPath.row + 1)
+                tableView.insertRows(at: indexPaths, with: .automatic)
+                
+            } else {
+                dataSource.dataSource.remove(at: indexPath.row + 1)
+                tableView.deleteRows(at: indexPaths, with: .automatic)
+            }
+            cell.isOpened.toggle()
+        }
+        tableView.endUpdates()
+        
+        
+//        viewModel.isCollapsed = !viewModel.isCollapsed
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.dataSource.dataSource[indexPath.row][1] == "is not openable" {
+            return CGFloat(Int(self.dataSource.dataSource[indexPath.row][0].count / 18) * 10 + 70)
+        }
+        return CGFloat(70)
+    }
+    
 }

@@ -14,25 +14,32 @@ class ArticleView: UIView {
     let imageBackground: UIView = UIView()
     var label: UILabel! // Text about Person
     let player: PlayerView = PlayerView()
+    
     let buttonSlideShow: UIButton = {
         let content = UIButton()
         content.setTitle("SlideShow", for: .normal)
         content.addTarget(self, action: #selector(openSlideShow), for: .touchUpInside)
         content.tintColor = .systemTeal
-        content.alpha = 0.7
-        content.backgroundColor = .blue
+        content.alpha = 0.9
+//        content.backgroundColor = #colorLiteral(red: 0.4887033701, green: 0.1842776537, blue: 0.4522601366, alpha: 1)
         return content
     }()
+    
     let optionalButtonsView: UIView = {
         let content = UIView()
+        content.backgroundColor = #colorLiteral(red: 0.6914221048, green: 0.5730599165, blue: 0.5702240467, alpha: 1)
         return content
     }()
+    
     let musicButton: UIButton = {
         let content: UIButton = UIButton()
-        content.setImage(UIImage(systemName: "fleuron.fill"), for: .normal)
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+        content.setImage(UIImage(systemName: "music.note.list", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
         content.backgroundColor = .clear
         return content
     }()
+    
     weak var viewController: ArticleVC!
 
     override init(frame: CGRect) {
@@ -45,7 +52,7 @@ class ArticleView: UIView {
     
     func setupUI() {
         // Scroll View
-        setupScroller()
+//        setupScroller()
         // Image
         setupImage()
         // Slide Show Button
@@ -53,10 +60,12 @@ class ArticleView: UIView {
         // Optional Buttons
         setupOptionalButtons()
         // Label
-        setupLabel()
+//        setupLabel()
         // Player
-        setupPlayer()
+//        setupPlayer()
         // Navbar Buttons
+        // Table of Contents
+        setupTable()
         setupNavBar()
     }
     
@@ -74,24 +83,24 @@ class ArticleView: UIView {
     }
     
     func setupImage() {
-        scroller.addSubview(imageView)
+        addSubview(imageView)
         imageView.isUserInteractionEnabled = true
-        imageView.layer.shadowOpacity = 0.3
+//        imageView.layer.shadowOpacity = 0.3
         imageView.layer.shadowOffset = CGSize(width: 10, height: 10)
         imageView.contentMode = .center
-        imageView.clipsToBounds = true;
-
+        imageView.clipsToBounds = true
+        imageView.addShadow(to: [.top, .bottom, .left, .right], radius: 5.0, width: UIScreen.main.bounds.width, height: 228)
         imageView.snp.makeConstraints { make in
-            make.top.equalTo(scroller.snp.top)
-            make.leading.equalTo(scroller.snp.leading)
-            make.width.equalTo(scroller.snp.width)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(-150)
+            make.leading.equalToSuperview()
+            make.width.equalToSuperview()
             make.height.equalTo(228)
         }
     }
     
     func setupSlideShowButton() {
         let widthOfScreen = (UIScreen.main.bounds.width - 200) / 2
-        print("Width of view", widthOfScreen)
+//        print("Width of view", widthOfScreen)
         imageView.addSubview(buttonSlideShow)
         buttonSlideShow.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.top).offset(140)
@@ -99,32 +108,89 @@ class ArticleView: UIView {
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
+        buttonSlideShow.applyGradient(isVertical: false, colorArray: [#colorLiteral(red: 0.4887033701, green: 0.1842776537, blue: 0.4522601366, alpha: 1), #colorLiteral(red: 0.7274869084, green: 0.2913005352, blue: 0.660961926, alpha: 1)], width: 200, height: 50)
+        buttonSlideShow.layer.shadowColor = UIColor.black.cgColor
+        buttonSlideShow.layer.shadowOpacity = 1
+        buttonSlideShow.layer.shadowOffset = .zero
+        buttonSlideShow.layer.shadowRadius = 10
     }
     
-    func setupLabel() {
+    func setupOptionalButtons() {
         let currentWidth = UIScreen.main.bounds.width
-        let width = currentWidth - 100
-        scroller.addSubview(label)
-        label.backgroundColor = .blue
-        label.numberOfLines = 0
-        label.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(20)
-            make.leading.equalTo(scroller.snp.leading).offset(20)
-            make.width.equalTo(width + 60)
+        optionalButtonsView.clipsToBounds = true
+        addSubview(optionalButtonsView)
+        optionalButtonsView.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom)
+            make.leading.equalToSuperview()
+            make.width.equalTo(currentWidth)
+            make.height.equalTo(70)
+        }
+        
+        optionalButtonsView.addShadow(to: [.top], radius: 5.0, width: currentWidth, height: 70)
+        optionalButtonsView.layer.masksToBounds = false
+        optionalButtonsView.layer.shadowColor = UIColor.black.cgColor
+        optionalButtonsView.layer.shadowOpacity = 1
+        optionalButtonsView.layer.shadowOffset = .zero
+        
+        optionalButtonsView.addSubview(musicButton)
+        musicButton.snp.makeConstraints { make in
+            make.top.equalTo(optionalButtonsView.snp.top)
+            make.leading.equalTo(optionalButtonsView.snp.leading).offset(20)
+            make.width.equalTo(70)
+            make.height.equalTo(70)
         }
     }
     
-    func setupPlayer() {
+//    func setupLabel() {
+//        let currentWidth = UIScreen.main.bounds.width
+//        let width = currentWidth - 100
+//        scroller.addSubview(label)
+//        label.numberOfLines = 0
+//        label.snp.makeConstraints { make in
+//            make.top.equalTo(optionalButtonsView.snp.bottom).offset(20)
+//            make.leading.equalTo(scroller.snp.leading).offset(20)
+//            make.width.equalTo(width + 60)
+//        }
+////        label.layer.shadowColor = UIColor.black.cgColor
+////        label.layer.shadowOpacity = 1
+////        label.layer.shadowOffset = .zero
+////        label.layer.shadowRadius = 10
+//    }
+    
+//    func setupPlayer() {
+//        let currentWidth = UIScreen.main.bounds.width
+//        let width = currentWidth - 100
+//        scroller.addSubview(player)
+//        player.snp.makeConstraints { make in
+//            make.top.equalTo(label.snp.bottom).offset(20)
+//            make.leading.equalTo(scroller.snp.leading).offset(20)
+//            make.width.equalTo(width+60)
+//            make.height.equalTo(60)
+//            make.bottom.equalTo(scroller.snp.bottom)
+//        }
+//    }
+    
+    let table: UITableView = {
+        let content = UITableView()
+        content.backgroundColor = .brown
+        content.translatesAutoresizingMaskIntoConstraints = false
+        return content
+    }()
+    
+    func setupTable() {
         let currentWidth = UIScreen.main.bounds.width
         let width = currentWidth - 100
-        scroller.addSubview(player)
-        player.snp.makeConstraints { make in
-            make.top.equalTo(label.snp.bottom).offset(20)
-            make.leading.equalTo(scroller.snp.leading).offset(20)
-            make.width.equalTo(width+60)
-            make.height.equalTo(60)
-            make.bottom.equalTo(scroller.snp.bottom)
+        table.dataSource = viewController.dataSource
+        table.delegate = viewController.self
+        table.register(DropperCell.self, forCellReuseIdentifier: "cell")
+        table.register(DropDownCell.self, forCellReuseIdentifier: "cell2")
+        table.backgroundColor = .clear
+        addSubview(table)
+        table.snp.makeConstraints { make in
+            make.top.equalTo(optionalButtonsView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
+        
     }
     
     func setupNavBar() {
@@ -141,14 +207,6 @@ class ArticleView: UIView {
         ]
     }
     
-    func setupOptionalButtons() {
-//        let newView = UIView()
-//        newView.backgroundColor = #colorLiteral(red: 0.6914221048, green: 0.5730599165, blue: 0.5702240467, alpha: 1)
-//        addSubview(newView)
-//        newView.snp.makeConstraints { make in
-//            <#code#>
-//        }
-    }
     
     @objc func options() {
         viewController.options()
@@ -159,3 +217,4 @@ class ArticleView: UIView {
     }
 
 }
+
