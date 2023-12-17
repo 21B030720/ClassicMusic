@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 protocol PediaViewControllerProtocol: class {
-    func setupCollectionView()
+    var dataSource: PediaDataSource { get set}
+    func setupUI()
     var presenter: PediaPresenterProtocol! { get set }
     var collection: UICollectionView! { get set }
 }
@@ -19,15 +20,20 @@ protocol PediaConfiguratorProtocol: class {
 }
 
 protocol PediaPresenterProtocol: class {
-    func certainTitleIsPicked(id: Int)
+    func certainTitleIsPicked(index: Int)
     func configureView()
-    func loadCertainTitle(id: Int, for cell: TitleCell)
+    func loadCertainTitle(id: Int, for cell: TitleCell, data: PediaData)
+    func loadPediaData() -> [PediaData]?
+    func filterData(parameter: String)
 }
 
 protocol PediaInteractorProtocol: class {
-    func loadAttributesForTitle(id: Int, for cell: TitleCell)
+    var data: Data { get }
+    func loadAttributesForTitle(id: Int, for cell: TitleCell, data: PediaData)
+    func loadPediaData() -> [PediaData]?
+    func filterData(parameter: String)
 }
 
 protocol PediaRouterProtocol: class {
-    func openArticle(id: Int)
+    func openArticle(index: Int, data: ArticleData)
 }

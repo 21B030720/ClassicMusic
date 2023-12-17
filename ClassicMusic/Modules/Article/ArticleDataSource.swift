@@ -9,8 +9,12 @@ import Foundation
 import UIKit
 
 
+
+
 class ArticleDataSource: NSObject, UITableViewDataSource {
-    var dataSource = [["aaa", "aa"], ["bbb", "cccc"], ["kkkk", "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"]]
+    var musicSource: [[String]] = []
+    var dataSource: [[String]] = []
+//    [["aaa", "aa"], ["bbb", "cccc"], ["kkkk", "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"]]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DropperCell

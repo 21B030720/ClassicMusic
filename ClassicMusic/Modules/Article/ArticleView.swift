@@ -18,7 +18,7 @@ class ArticleView: UIView {
     let buttonSlideShow: UIButton = {
         let content = UIButton()
         content.setTitle("SlideShow", for: .normal)
-        content.addTarget(self, action: #selector(openSlideShow), for: .touchUpInside)
+        content.addTarget(self, action: #selector(routeSlideShow), for: .touchUpInside)
         content.tintColor = .systemTeal
         content.alpha = 0.9
 //        content.backgroundColor = #colorLiteral(red: 0.4887033701, green: 0.1842776537, blue: 0.4522601366, alpha: 1)
@@ -36,6 +36,13 @@ class ArticleView: UIView {
         let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
         let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
         content.setImage(UIImage(systemName: "music.note.list", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+        content.addTarget(self, action: #selector(routeMusicPlayer), for: .touchUpInside)
+        content.backgroundColor = .clear
+        return content
+    }()
+    let likeButton: UIButton = {
+        let content: UIButton = UIButton()
+        content.addTarget(self, action: #selector(liked), for: .touchUpInside)
         content.backgroundColor = .clear
         return content
     }()
@@ -44,6 +51,7 @@ class ArticleView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = #colorLiteral(red: 0.8948080319, green: 0.8633477257, blue: 1, alpha: 1)
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +59,7 @@ class ArticleView: UIView {
     }
     
     func setupUI() {
+        
         // Scroll View
 //        setupScroller()
         // Image
@@ -66,7 +75,7 @@ class ArticleView: UIView {
         // Navbar Buttons
         // Table of Contents
         setupTable()
-        setupNavBar()
+//        setupNavBar()
     }
     
     func setupScroller() {
@@ -83,6 +92,10 @@ class ArticleView: UIView {
     }
     
     func setupImage() {
+        let screenHeight = UIScreen.main.bounds.height
+        let window = UIApplication.shared.keyWindow
+        let topPadding = window?.safeAreaInsets.top
+        let bottomPadding = window?.safeAreaInsets.bottom
         addSubview(imageView)
         imageView.isUserInteractionEnabled = true
 //        imageView.layer.shadowOpacity = 0.3
@@ -91,7 +104,7 @@ class ArticleView: UIView {
         imageView.clipsToBounds = true
         imageView.addShadow(to: [.top, .bottom, .left, .right], radius: 5.0, width: UIScreen.main.bounds.width, height: 228)
         imageView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(-150)
+            make.top.equalToSuperview().offset(topPadding ?? 0)
             make.leading.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalTo(228)
@@ -139,6 +152,14 @@ class ArticleView: UIView {
             make.width.equalTo(70)
             make.height.equalTo(70)
         }
+        optionalButtonsView.addSubview(likeButton)
+        likeButton.snp.makeConstraints { make in
+            make.top.equalTo(optionalButtonsView.snp.top)
+            make.trailing.equalTo(optionalButtonsView.snp.trailing).offset(-20)
+            make.width.equalTo(70)
+            make.height.equalTo(70)
+        }
+        
     }
     
 //    func setupLabel() {
@@ -193,27 +214,35 @@ class ArticleView: UIView {
         
     }
     
-    func setupNavBar() {
-        let firstButtonItem = UIBarButtonItem(title: status, style: .plain, target: self, action: #selector(options))
-        let font = UIFont.systemFont(ofSize: 30)
-        firstButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
-        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        space.width = 40
-        let secondButtonItem = UIBarButtonItem(title: "Slide Show", style: .plain, target: self, action: #selector(openSlideShow))
-        viewController.navigationItem.rightBarButtonItems = [
-            firstButtonItem,
-            space,
-            secondButtonItem
-        ]
-    }
+//    func setupNavBar() {
+//        let firstButtonItem = UIBarButtonItem(title: status, style: .plain, target: self, action: #selector(options))
+//        let font = UIFont.systemFont(ofSize: 30)
+//        firstButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+//        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        space.width = 40
+//        let secondButtonItem = UIBarButtonItem(title: "Slide Show", style: .plain, target: self, action: #selector(routeSlideShow))
+//        viewController.navigationItem.rightBarButtonItems = [
+//            firstButtonItem,
+//            space,
+//            secondButtonItem
+//        ]
+//    }
     
     
     @objc func options() {
         viewController.options()
     }
     
-    @objc func openSlideShow() {
-        viewController.openSlideShow()
+    @objc func routeSlideShow() {
+        viewController.routeSlideShow()
+    }
+    
+    @objc func routeMusicPlayer() {
+        viewController.routeMusicPlayer()
+    }
+    
+    @objc func liked() {
+        viewController.liked()
     }
 
 }

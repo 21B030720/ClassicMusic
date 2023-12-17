@@ -14,30 +14,50 @@ import SnapKit
 //ViewControllerDelegate
 class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     // MARK: - Attributes
+    var index: Int!
+    var isLiked: Bool! {
+        willSet {
+            let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+            let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+            if newValue {
+                articleView.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+            } else {
+                articleView.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+            }
+        }
+    }
     var articleView: ArticleView = ArticleView(frame: .zero)
     
+    
     var dataSource = ArticleDataSource()
+    
     // MARK: - Init
     override func loadView() {
         articleView.viewController = self
         view = articleView
     }
     
-    init(imageName: String, text: String) {
+    init(index: Int, imageName: String, text: String, like: Bool, content: [[String]], music: [[String]]) {
+        super.init(nibName: nil, bundle: nil)
+        self.index = index
+        dataSource.dataSource = content
+        dataSource.musicSource = music
         articleView.imageView = UIImageView(image: UIImage(named: imageName))
         articleView.label = UILabel()
         articleView.label.text = text
-        super.init(nibName: nil, bundle: nil)
+        self.isLiked = like
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+        if isLiked {
+            articleView.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+        } else {
+            articleView.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         articleView.setupUI()
-        view.backgroundColor = .white
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
     }
 
     required init?(coder: NSCoder) {
@@ -46,7 +66,7 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
 
     // MARK: - Operations
     
-    @objc func openSlideShow() {
+    @objc func routeSlideShow() {
         let slideShowVC = SlideShowVC(text: articleView.label.text!)
         navigationController?.pushViewController(slideShowVC, animated: true)
     }
@@ -54,16 +74,19 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     @objc func options() {
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @objc func routeMusicPlayer() {
+        let musicContent = [["Beethoven.jpg", "Moon Sonata", "Beethoven", "tanya"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"]]
+        let musicPlayer = MusicPlayerVC(musicContent: musicContent)
+        navigationController?.pushViewController(musicPlayer, animated: true)
     }
-    */
+    
+    @objc func liked() {
+        isLiked.toggle()
+        Data.pediaData[self.index].toggleLike()
+        Data.reservedPediaData[self.index].toggleLike()
+        Data.articleData[self.index].toggleLike()
+    }
 
 }
 

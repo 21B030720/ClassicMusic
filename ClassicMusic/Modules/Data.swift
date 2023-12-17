@@ -12,14 +12,30 @@ let Profile = [
     "image": "image"
 ]
 
-struct Title {
+struct PediaData {
+    let image: String
     let name: String
-    let imageName: String
+    var like: Bool
+    
+    init(image: String, name: String, like: Bool) {
+        self.image = image
+        self.name = name
+        self.like = like
+    }
+    mutating func toggleLike() {
+        like.toggle()
+    }
 }
-
-struct Article {
-    let imageName: String
-    let text: String
+struct ArticleData {
+    let image: String
+    let name: String
+    var like: Bool
+    let readingContent: [[String]] // 2 size(title and content)
+    let musicContent: [[String]] // 4 size(name, author, trackname, image)
+    
+    mutating func toggleLike() {
+        like.toggle()
+    }
 }
 
 let titles = [
@@ -35,6 +51,48 @@ let titles = [
     
 ]
 
+var likedTitles: [[String]] = []
+
 class Data {
+    static var reservedPediaData: [PediaData] = []
+    static var pediaData: [PediaData] = []
+    static var articleData: [ArticleData] = []
     
+    static func getPediaData() -> [PediaData]? {
+        var listOfPediaData: [PediaData] = []
+        for i in titles {
+            listOfPediaData.append(PediaData(image: i[0], name: i[1], like: false))
+        }
+        Data.pediaData = listOfPediaData
+        Data.reservedPediaData = listOfPediaData
+        return listOfPediaData
+    }
+    
+    static func getArticleData() -> [ArticleData]? {
+        var listOfArticleData: [ArticleData] = []
+        for i in titles {
+            let articleSample = ArticleData(
+                image: i[0],
+                name: i[1],
+                like: false,
+                readingContent: [["aaa", "aa"], ["bbb", "cccc"], ["kkkk", "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"]],
+                musicContent: [["aaa", "aa"], ["bbb", "cccc"], ["kkkk", "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"], ["bbb", "cccc"]]
+            )
+            listOfArticleData.append(articleSample)
+        }
+//        print("Article Data is got", listOfArticleData)
+        Data.articleData = listOfArticleData
+        return listOfArticleData
+    }
+    
+    static func filterPediaBy(parameter: String) {
+        switch parameter {
+        case "favorites":
+            pediaData = pediaData.filter({$0.like == true})
+        case "default":
+            pediaData = reservedPediaData
+        default:
+            break
+        }
+    }
 }

@@ -16,9 +16,18 @@ class PediaRouter: PediaRouterProtocol {
         self.viewController = viewController
     }
     
-    func openArticle(id: Int) {
-        let article: ArticleVC = ArticleVC(imageName: titles[id][0], text: titles[id][2])
+    func openArticle(index: Int, data: ArticleData) {
+        let article: ArticleVC = ArticleVC(
+            index: index,
+            imageName: data.image,
+            text: data.name,
+            like: data.like,
+            content: data.readingContent,
+            music: data.musicContent
+        )
 //        delegate?.didSelectProduct(imageName: titles[indexPath.row][0], text: titles[indexPath.row][1])
+//        self.tabBarController?.tabBar.isHidden = true
+        article.hidesBottomBarWhenPushed = true
         viewController.navigationController?.pushViewController(article, animated: true)
     }
 }

@@ -10,10 +10,22 @@ import AVKit
 import AVFoundation
 
 class PlayerView: UIView {
+    
     // MARK: - Attributes
+    var onPlay: Bool = false {
+        willSet {
+            let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+            let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+            if newValue {
+                playOrPauseButton.setImage(UIImage(systemName: "pause", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+            } else {
+                playOrPauseButton.setImage(UIImage(systemName: "play", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+            }
+        }
+    }
     var isSliderMovingByTime: Bool = true
     var currentTrackAddress = 0
-    let list = ["tanya", "airplane_graveyard", "stalevar_street", "our_summer", "audio1"]
+    lazy var list = ["tanya"]
     var player = AVAudioPlayer()
     var slider: UISlider = {
         let content = UISlider()
@@ -26,69 +38,76 @@ class PlayerView: UIView {
         content.addTarget(self, action: #selector(changeTime(sender:event:)), for: .allTouchEvents)
         return content
     }()
-    let playButton: UIButton = {
+    let playOrPauseButton: UIButton = {
         let content = UIButton()
         content.translatesAutoresizingMaskIntoConstraints = false
-        content.backgroundColor = .darkGray
-        let image = UIImage(systemName: "play")
-        content.setImage(image, for: .normal)
+        content.backgroundColor = .clear
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+        content.setImage(UIImage(systemName: "play", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
         content.addTarget(self, action: #selector(playOrPauseTrack), for: .touchUpInside)
         return content
     }()
     let nextButton: UIButton = {
         let content = UIButton()
         content.translatesAutoresizingMaskIntoConstraints = false
-        content.backgroundColor = .darkGray
-        let image = UIImage(systemName: "forward")
-        content.setImage(image, for: .normal)
+        content.backgroundColor = .clear
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+        content.setImage(UIImage(systemName: "forward", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
         content.addTarget(self, action: #selector(nextTrack), for: .touchUpInside)
         return content
     }()
     let prevButton: UIButton = {
         let content = UIButton()
         content.translatesAutoresizingMaskIntoConstraints = false
-        content.backgroundColor = .darkGray
-        let image = UIImage(systemName: "backward")
-        content.setImage(image, for: .normal)
+        content.backgroundColor = .clear
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+        content.setImage(UIImage(systemName: "backward", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
         content.addTarget(self, action: #selector(prevTrack), for: .touchUpInside)
         return content
     }()
     
-    
     // MARK: - Init
     override func draw(_ rect: CGRect) {
         loadMusic()
-        backgroundColor = .blue
-        addSubview(playButton)
+        layer.cornerRadius = 20
+        backgroundColor = #colorLiteral(red: 0.8823529412, green: 0.8235294118, blue: 0.8235294118, alpha: 1)
+        addSubview(playOrPauseButton)
         addSubview(prevButton)
         addSubview(nextButton)
         addSubview(slider)
-        NSLayoutConstraint.activate([
-            prevButton.topAnchor.constraint(equalTo: topAnchor),
-            prevButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            prevButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            prevButton.widthAnchor.constraint(equalToConstant: frame.size.width / 3),
-            // Main Button
-            playButton.topAnchor.constraint(equalTo: topAnchor),
-            playButton.leadingAnchor.constraint(equalTo: prevButton.trailingAnchor),
-            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            playButton.widthAnchor.constraint(equalToConstant: frame.size.width / 3),
-            // Next Button
-            nextButton.topAnchor.constraint(equalTo: topAnchor),
-            nextButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            nextButton.widthAnchor.constraint(equalToConstant: frame.size.width / 3),
-            // Slider
-            slider.topAnchor.constraint(equalTo: nextButton.bottomAnchor),
-            slider.leadingAnchor.constraint(equalTo: leadingAnchor),
-            slider.bottomAnchor.constraint(equalTo: bottomAnchor),
-            slider.trailingAnchor.constraint(equalTo: trailingAnchor),
-        ])
+        slider.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(18)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+            make.height.equalTo(20)
+        }
+        prevButton.snp.makeConstraints { make in
+            make.top.equalTo(slider.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(25)
+            make.bottom.equalToSuperview()
+            make.width.equalTo((frame.size.width - 50) / 3)
+        }
+        playOrPauseButton.snp.makeConstraints { make in
+            make.top.equalTo(slider.snp.bottom).offset(10)
+            make.leading.equalTo(prevButton.snp.trailing)
+            make.bottom.equalToSuperview()
+            make.width.equalTo((frame.size.width - 50) / 3)
+        }
+        nextButton.snp.makeConstraints { make in
+            make.top.equalTo(slider.snp.bottom).offset(10)
+            make.leading.equalTo(playOrPauseButton.snp.trailing)
+            make.bottom.equalToSuperview()
+            make.width.equalTo((frame.size.width - 50) / 3)
+        }
     }
     
     // MARK: - Operations
     func loadMusic() {
-        guard let url = Bundle.main.url(forResource: list[currentTrackAddress], withExtension: "mp3") else { return }
+        let address = currentTrackAddress % list.count
+        guard let url = Bundle.main.url(forResource: list[address], withExtension: "mp3") else { return }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -103,28 +122,43 @@ class PlayerView: UIView {
     @objc func playOrPauseTrack() {
         if(!player.isPlaying) {
             player.play()
+            updateSlider()
+            onPlay = true
         } else {
             player.pause()
+            onPlay = false
         }
     }
     @objc func nextTrack() {
+        onPlay = false
         currentTrackAddress += 1
         if(currentTrackAddress > 4) {
             currentTrackAddress = 0
         }
 //        player.pause()
+        onPlay = true
         loadMusic()
         player.play()
     }
     @objc func prevTrack() {
+        onPlay = false
         currentTrackAddress -= 1
         if(currentTrackAddress < 0) {
             currentTrackAddress = 4
         }
 //        player.pause()
+        onPlay = true
         loadMusic()
         player.play()
     }
+    func playTrackByAddress(address: Int) {
+        onPlay = false
+        currentTrackAddress = address
+        onPlay = true
+        loadMusic()
+        player.play()
+    }
+    // Manual Scrolling of Slider
     @objc func changeTime(sender:UISlider!, event: UIEvent) {
         player.currentTime = TimeInterval(sender.value*Float(player.duration))
 
@@ -154,9 +188,14 @@ class PlayerView: UIView {
         }
         self.isSliderMovingByTime = true
     }
+    // Slider Moves by Time when Player is Working
     func updateSlider() {
         DispatchQueue.main.async {
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (_) in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                if self.onPlay == false {
+                    timer.invalidate()
+                    return
+                }
                 if self.isSliderMovingByTime {
                     UIView.animate(withDuration: 10.0, animations: {
                         self.slider.value = Float(self.player.currentTime) / Float(self.player.duration)

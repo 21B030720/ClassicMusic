@@ -48,6 +48,7 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.831372549, blue: 0.831372549, alpha: 1)
+        hidesBottomBarWhenPushed = true
         setupUI()
     }
     

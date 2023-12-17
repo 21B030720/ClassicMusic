@@ -39,6 +39,7 @@ class TitleCell: UICollectionViewCell {
         }
         
         func setupTextView() {
+            labelView.textAlignment = .center
             labelView.translatesAutoresizingMaskIntoConstraints = false
             labelView.leftAnchor.constraint(equalTo: content.leftAnchor).isActive = true
             labelView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true

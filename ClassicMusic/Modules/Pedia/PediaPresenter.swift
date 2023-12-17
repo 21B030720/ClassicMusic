@@ -19,19 +19,29 @@ class PediaPresenter: PediaPresenterProtocol {
         self.view = view
     }
     
+    func configureView() {
+        view.setupUI()
+    }
+    
     // MARK: - Interactor
-    func loadCertainTitle(id: Int, for cell: TitleCell) {
-        interactor.loadAttributesForTitle(id: id, for: cell)
+    func loadCertainTitle(id: Int, for cell: TitleCell, data: PediaData) {
+        interactor.loadAttributesForTitle(id: id, for: cell, data: data)
+    }
+    
+    func filterData(parameter: String) {
+        interactor.filterData(parameter: parameter)
+        view.dataSource.dataSource = Data.pediaData
     }
     
     
     // MARK: - Router
-    func certainTitleIsPicked(id: Int) {
-        router.openArticle(id: id)
+    func certainTitleIsPicked(index: Int) {
+        let data = Data.articleData[index]
+        router.openArticle(index: index, data: data)
     }
     
-    func configureView() {
-        view.setupCollectionView()
+    func loadPediaData() -> [PediaData]? {
+        return interactor.loadPediaData()
     }
     
 }
