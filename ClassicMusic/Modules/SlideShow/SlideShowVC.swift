@@ -50,8 +50,8 @@ class SlideShowVC: UIViewController {
         return content
     }()
     
-    init(text: String) {
-        self.text = text.components(separatedBy: ".")
+    init(text: [String]) {
+        self.text = text
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -74,13 +74,15 @@ class SlideShowVC: UIViewController {
         let widthOfScreen = UIScreen.main.bounds.width
         let heightOfScreen = UIScreen.main.bounds.height
         view.addSubview(label)
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = #colorLiteral(red: 0.8823529412, green: 0.8509803922, blue: 0.768627451, alpha: 1)
         label.numberOfLines = 0
         // Label
         label.snp.makeConstraints { make in
             make.top.equalToSuperview().offset((topPadding ?? 0))
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(view.safeAreaLayoutGuide.layoutFrame.size.height - 115 - (topPadding ?? 0) - (bottomPadding ?? 0))
         }
         // View of Buttons

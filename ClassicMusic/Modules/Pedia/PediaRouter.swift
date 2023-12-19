@@ -20,14 +20,15 @@ class PediaRouter: PediaRouterProtocol {
         let article: ArticleVC = ArticleVC(
             index: index,
             imageName: data.image,
+            imageURL: data.imageURL,
             text: data.name,
             like: data.like,
             content: data.readingContent,
             music: data.musicContent
         )
 //        delegate?.didSelectProduct(imageName: titles[indexPath.row][0], text: titles[indexPath.row][1])
-//        self.tabBarController?.tabBar.isHidden = true
-        article.hidesBottomBarWhenPushed = true
+        viewController.tabBarController?.tabBar.isHidden = true
+//        article.hidesBottomBarWhenPushed = true
         viewController.navigationController?.pushViewController(article, animated: true)
     }
 }

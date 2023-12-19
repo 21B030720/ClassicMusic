@@ -25,7 +25,8 @@ class PlayerView: UIView {
     }
     var isSliderMovingByTime: Bool = true
     var currentTrackAddress = 0
-    lazy var list = ["tanya"]
+    lazy var list: [String] = []
+    lazy var listURL: [String] = []
     var player = AVAudioPlayer()
     var slider: UISlider = {
         let content = UISlider()
@@ -106,7 +107,12 @@ class PlayerView: UIView {
     
     // MARK: - Operations
     func loadMusic() {
+        player.stop()
         let address = currentTrackAddress % list.count
+        if listURL[address] != "" {
+            loadURLMusic(urlString: listURL[address])
+            return
+        }
         guard let url = Bundle.main.url(forResource: list[address], withExtension: "mp3") else { return }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -116,6 +122,25 @@ class PlayerView: UIView {
         } catch let error {
             print(error.localizedDescription)
         }
+        updateSlider()
+    }
+    
+    func loadURLMusic(urlString: String) {
+        let url = URL(string: urlString)
+        var downloadTask:URLSessionDownloadTask
+        downloadTask = URLSession.shared.downloadTask(with: url!) { (url, response, error) in
+            do {
+                self.player = try AVAudioPlayer(contentsOf: url! as URL)
+                self.player.prepareToPlay()
+                self.player.volume = 2.0
+                self.player.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            } catch {
+                print("AVAudioPlayer init failed")
+            }
+        }
+        downloadTask.resume()
         updateSlider()
     }
     
@@ -132,7 +157,7 @@ class PlayerView: UIView {
     @objc func nextTrack() {
         onPlay = false
         currentTrackAddress += 1
-        if(currentTrackAddress > 4) {
+        if(currentTrackAddress >= list.count) {
             currentTrackAddress = 0
         }
 //        player.pause()
@@ -151,6 +176,8 @@ class PlayerView: UIView {
         loadMusic()
         player.play()
     }
+    
+    // When Tap Track
     func playTrackByAddress(address: Int) {
         onPlay = false
         currentTrackAddress = address
@@ -158,6 +185,7 @@ class PlayerView: UIView {
         loadMusic()
         player.play()
     }
+    
     // Manual Scrolling of Slider
     @objc func changeTime(sender:UISlider!, event: UIEvent) {
         player.currentTime = TimeInterval(sender.value*Float(player.duration))
@@ -188,6 +216,7 @@ class PlayerView: UIView {
         }
         self.isSliderMovingByTime = true
     }
+    
     // Slider Moves by Time when Player is Working
     func updateSlider() {
         DispatchQueue.main.async {

@@ -10,7 +10,7 @@ import UIKit
 class ArticleView: UIView {
     let status = "+"
     let scroller: UIScrollView = UIScrollView()
-    var imageView: UIImageView! // Image of Person
+    var imageView: UIImageView = UIImageView() // Image of Person
     let imageBackground: UIView = UIView()
     var label: UILabel! // Text about Person
     let player: PlayerView = PlayerView()

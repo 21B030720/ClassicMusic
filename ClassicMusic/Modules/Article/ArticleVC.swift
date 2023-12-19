@@ -26,6 +26,8 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
             }
         }
     }
+    var contentCopy: [[String]]!
+    var musicCopy: [[String]]!
     var articleView: ArticleView = ArticleView(frame: .zero)
     
     
@@ -37,12 +39,22 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
         view = articleView
     }
     
-    init(index: Int, imageName: String, text: String, like: Bool, content: [[String]], music: [[String]]) {
+    init(index: Int, imageName: String?, imageURL: String?, text: String, like: Bool, content: [[String]], music: [[String]]) {
         super.init(nibName: nil, bundle: nil)
+        contentCopy = content
+        musicCopy = music
         self.index = index
         dataSource.dataSource = content
         dataSource.musicSource = music
-        articleView.imageView = UIImageView(image: UIImage(named: imageName))
+//        articleView.imageView = UIImageView(image: UIImage(named: imageName))
+        if let _ = imageName {
+            articleView.imageView.image = UIImage(named: imageName!)
+        } else if let _ = imageURL {
+            print(imageURL)
+            articleView.imageView.loadImageUsingCache(withUrl: imageURL!)
+        } else {
+            articleView.imageView.image = UIImage(named: "unikitty.jpg")
+        }
         articleView.label = UILabel()
         articleView.label.text = text
         self.isLiked = like
@@ -67,7 +79,11 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     // MARK: - Operations
     
     @objc func routeSlideShow() {
-        let slideShowVC = SlideShowVC(text: articleView.label.text!)
+        var array: [String] = []
+        for i in contentCopy {
+            array.append(i[1])
+        }
+        let slideShowVC = SlideShowVC(text: array)
         navigationController?.pushViewController(slideShowVC, animated: true)
     }
 
@@ -77,7 +93,7 @@ class ArticleVC: UIViewController, AVAssetResourceLoaderDelegate {
     
     @objc func routeMusicPlayer() {
         let musicContent = [["Beethoven.jpg", "Moon Sonata", "Beethoven", "tanya"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"]]
-        let musicPlayer = MusicPlayerVC(musicContent: musicContent)
+        let musicPlayer = MusicPlayerVC(image: articleView.imageView.image!, musicContent: musicCopy)
         navigationController?.pushViewController(musicPlayer, animated: true)
     }
     

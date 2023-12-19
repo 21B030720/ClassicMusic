@@ -17,8 +17,11 @@ class MusicPlayerVC: UIViewController {
         musicPlayerView.viewController = self
     }
     
-    init(musicContent: [[String]]) {
+    init(image: UIImage, musicContent: [[String]]) {
+//        let musicContent = [["Beethoven.jpg", "Moon Sonata", "Beethoven", "tanya"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "airplane_graveyard"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "our_summer"], ["Beethoven.jpg", "Moon Sonata", "Beethoven", "audio1"]]
         super.init(nibName: nil, bundle: nil)
+        dataSource.image = image
+        dataSource.dataSource = musicContent
         dataSource.dataSource = musicContent
     }
     
@@ -30,7 +33,8 @@ class MusicPlayerVC: UIViewController {
         super.viewDidLoad()
         musicPlayerView.player.list = []
         for i in dataSource.dataSource {
-            musicPlayerView.player.list.append(i[3])
+            musicPlayerView.player.list.append(i[2])
+            musicPlayerView.player.listURL.append(i[3])
         }
         
         musicPlayerView.setupUI()

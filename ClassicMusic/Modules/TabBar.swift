@@ -8,9 +8,11 @@
 import UIKit
 
 class TabBar: UITabBarController {
+    var firstNavigationController: PediaVC!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 //        let appearance = UITabBarAppearance()
 //        appearance.backgroundColor = .blue
 //        tabBar.standardAppearance = appearance
@@ -20,13 +22,15 @@ class TabBar: UITabBarController {
         self.tabBar.backgroundColor = #colorLiteral(red: 0.5803921569, green: 0.4941176471, blue: 0.4941176471, alpha: 1)
         tabBar.unselectedItemTintColor = .blue
         tabBar.unselectedItemTintColor = .white
-        
     }
     
     private func setupTabs() {
-        let pedia = self.createNAvBar(with: "Pedia", and: UIImage(systemName: "book.fill"), vc: PediaVC())
+        let rootOfPedia = PediaVC()
+        let pedia = self.createNAvBar(with: "Pedia", and: UIImage(systemName: "book.fill"), vc: rootOfPedia)
+        firstNavigationController = rootOfPedia
+        let creator = self.createNAvBar(with: "Creator", and: UIImage(systemName: "plus.diamond.fill"), vc: CreatorVC())
         let profile = self.createNAvBar(with: "Profile", and: UIImage(systemName: "figure.stand"), vc: ProfileVC())
-        self.setViewControllers([pedia, profile], animated: true)
+        self.setViewControllers([pedia, creator, profile], animated: true)
     }
 
     private func createNAvBar(with title: String, and image: UIImage?, vc: UIViewController) -> UINavigationController {
@@ -49,3 +53,7 @@ class TabBar: UITabBarController {
     */
 
 }
+
+
+
+

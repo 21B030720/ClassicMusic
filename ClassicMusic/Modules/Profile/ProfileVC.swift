@@ -7,8 +7,13 @@
 
 import UIKit
 import SnapKit
+import AVKit
+import AVFoundation
 
 class ProfileVC: UIViewController {
+    
+    var player = AVAudioPlayer()
+    
     
     private lazy var imageView: UIImageView = {
         let content: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 190, height: 190))
@@ -21,9 +26,12 @@ class ProfileVC: UIViewController {
         content.backgroundColor = UIColor(patternImage: UIImage(named: "old-paper-white")!)
         content.addTarget(self, action: #selector(openFavorites), for: .touchUpInside)
         content.setTitle("Favorites", for: .normal)
-        var config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .large)
-        let image = UIImage(systemName: "greaterthan", withConfiguration: config)
-        content.setImage(image, for: .normal)
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+        content.setImage(UIImage(systemName: "greaterthan", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
+//        var config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .large)
+//        let image = UIImage(systemName: "greaterthan", withConfiguration: config)
+//        content.setImage(image, for: .normal)
         return content
     }()
     
@@ -31,12 +39,17 @@ class ProfileVC: UIViewController {
         let content: CustonButton = CustonButton()
         content.backgroundColor = UIColor(patternImage: UIImage(named: "old-paper-yellow")!)
         content.addTarget(self, action: #selector(openAchievements), for: .touchUpInside)
-        content.setTitle("Achievements", for: .normal)
-        var config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .large)
-        let image = UIImage(systemName: "greaterthan", withConfiguration: config)
-        content.setImage(image, for: .normal)
+        content.setTitle("Achievements(is not available)", for: .normal)
+//        var config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .large)
+//        let image = UIImage(systemName: "greaterthan", withConfiguration: config)
+//        content.setImage(image, for: .normal)
+        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 32, weight: .medium, scale: .default)
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [#colorLiteral(red: 0.2036997477, green: 0.03813213533, blue: 0.1600830025, alpha: 1)])
+        content.setImage(UIImage(systemName: "greaterthan", withConfiguration: colorConfig.applying(sizeConfig)), for: .normal)
         return content
     }()
+    
+    
     
     private lazy var textView: UITextView = {
         let content: UITextView = UITextView()
@@ -44,11 +57,15 @@ class ProfileVC: UIViewController {
         content.font = UIFont(name: "HelveticaNeue-Bold", size: 30.0)!
         return content
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.831372549, blue: 0.831372549, alpha: 1)
-        hidesBottomBarWhenPushed = true
+//        hidesBottomBarWhenPushed = true
         setupUI()
     }
     
@@ -80,6 +97,7 @@ class ProfileVC: UIViewController {
         }
         // Text View
         view.addSubview(textView)
+        textView.delegate = self
         textView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(472)
             make.leading.equalToSuperview()
@@ -88,7 +106,14 @@ class ProfileVC: UIViewController {
         }
     }
     
+    
     @objc private func openFavorites() {
+//        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.selectedIndex = 0
+        let tab = self.tabBarController as! TabBar
+        tab.firstNavigationController.pickedFilter = "favorites"
+        tab.firstNavigationController.presenter.filterData(parameter: "favorites")
+        tab.firstNavigationController.collection.reloadData()
         
     }
     
@@ -107,6 +132,26 @@ class ProfileVC: UIViewController {
     }
     */
 
+}
+
+extension ProfileVC: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let ascii: Int = Int((text.last?.asciiValue!)!)
+        print("Note ascii", (ascii - 33) % 88)
+        loadMusic(address: (ascii - 33) % 88)
+        return true
+    }
+    func loadMusic(address: Int) {
+        guard let url = Bundle.main.url(forResource: listOfNotes[address], withExtension: "mp3") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 class CustonButton: UIButton {

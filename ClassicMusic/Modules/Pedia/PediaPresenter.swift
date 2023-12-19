@@ -23,6 +23,8 @@ class PediaPresenter: PediaPresenterProtocol {
         view.setupUI()
     }
     
+    
+    
     // MARK: - Interactor
     func loadCertainTitle(id: Int, for cell: TitleCell, data: PediaData) {
         interactor.loadAttributesForTitle(id: id, for: cell, data: data)
@@ -33,15 +35,24 @@ class PediaPresenter: PediaPresenterProtocol {
         view.dataSource.dataSource = Data.pediaData
     }
     
-    
-    // MARK: - Router
-    func certainTitleIsPicked(index: Int) {
-        let data = Data.articleData[index]
-        router.openArticle(index: index, data: data)
-    }
-    
     func loadPediaData() -> [PediaData]? {
         return interactor.loadPediaData()
     }
     
+    
+    // MARK: - Router
+    func certainTitleIsPicked(index: Int, pickedFilter: String) {
+        var data = Data.articleData[index]
+        if pickedFilter == "favorites" {
+            let list = Data.getLikedArticles()
+            print("Finding problem", list)
+            guard list.count > index else {
+                print("Still same problem with routing and array")
+                return
+            }
+            data = list[index]
+        }
+        router.openArticle(index: index, data: data)
+    }
+
 }

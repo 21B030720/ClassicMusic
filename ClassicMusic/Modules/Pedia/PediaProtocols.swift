@@ -20,7 +20,7 @@ protocol PediaConfiguratorProtocol: class {
 }
 
 protocol PediaPresenterProtocol: class {
-    func certainTitleIsPicked(index: Int)
+    func certainTitleIsPicked(index: Int, pickedFilter: String)
     func configureView()
     func loadCertainTitle(id: Int, for cell: TitleCell, data: PediaData)
     func loadPediaData() -> [PediaData]?

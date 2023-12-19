@@ -30,6 +30,8 @@ class TitleCell: UICollectionViewCell {
         }
         
         func setupImageView() {
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.leftAnchor.constraint(equalTo: content.leftAnchor, constant: 10).isActive = true
             imageView.topAnchor.constraint(equalTo: content.topAnchor).isActive = true
