@@ -43,14 +43,7 @@ class PediaVC: UIViewController, PediaViewControllerProtocol  {
         presenter.configureView()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "brown_background")!)
         self.title = "Pedia"
-//        if pickedFilter == "favorites" {
-//            self.pickedFilter = "favorites"
-//            self.presenter.filterData(parameter: "favorites")
-//            self.collection.reloadData()
-//        }
-        
-        
-//        connectFirebase()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,6 +10,7 @@
 		511614E784A4A131D563B378 /* Pods_ClassicMusicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAB34BBDBA5A1BA0528BC71 /* Pods_ClassicMusicTests.framework */; };
 		552638E6DCDA300965605311 /* Pods_ClassicMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1348E3B887887FF8ECD00459 /* Pods_ClassicMusic.framework */; };
 		E9A1DD929D0068050BC29CBF /* Pods_ClassicMusic_ClassicMusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008A7476F9D906187489C7DD /* Pods_ClassicMusic_ClassicMusicUITests.framework */; };
+		F512C5402B31A32200DE9938 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F512C53F2B31A32200DE9938 /* GoogleService-Info.plist */; };
 		F513C6F72B0E157500651DB9 /* PediaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513C6F62B0E157500651DB9 /* PediaDataSource.swift */; };
 		F513C6F92B0E175100651DB9 /* PediaVCCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513C6F82B0E175100651DB9 /* PediaVCCopy.swift */; };
 		F5277D4C2B28889100F707CA /* ArticleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5277D4B2B28889100F707CA /* ArticleDataSource.swift */; };
@@ -180,6 +181,7 @@
 		714532CE7ADDE738FAABDF93 /* Pods-ClassicMusicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassicMusicTests.debug.xcconfig"; path = "Target Support Files/Pods-ClassicMusicTests/Pods-ClassicMusicTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DEAB34BBDBA5A1BA0528BC71 /* Pods_ClassicMusicTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassicMusicTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF06CECB2451D9BDC58030AE /* Pods-ClassicMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassicMusic.release.xcconfig"; path = "Target Support Files/Pods-ClassicMusic/Pods-ClassicMusic.release.xcconfig"; sourceTree = "<group>"; };
+		F512C53F2B31A32200DE9938 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F513C6F62B0E157500651DB9 /* PediaDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaDataSource.swift; sourceTree = "<group>"; };
 		F513C6F82B0E175100651DB9 /* PediaVCCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PediaVCCopy.swift; sourceTree = "<group>"; };
 		F5277D4B2B28889100F707CA /* ArticleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDataSource.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 		F5F357BE2A6E684700D7E0C4 /* ClassicMusic */ = {
 			isa = PBXGroup;
 			children = (
+				F512C53F2B31A32200DE9938 /* GoogleService-Info.plist */,
 				F5F357BF2A6E684700D7E0C4 /* AppDelegate.swift */,
 				F5F357C12A6E684700D7E0C4 /* SceneDelegate.swift */,
 				F59817DD2AE83146006EDB84 /* Extensions.swift */,
@@ -669,6 +672,8 @@
 			dependencies = (
 			);
 			name = ClassicMusic;
+			packageProductDependencies = (
+			);
 			productName = ClassicMusic;
 			productReference = F5F357BC2A6E684700D7E0C4 /* ClassicMusic.app */;
 			productType = "com.apple.product-type.application";
@@ -744,6 +749,8 @@
 				Base,
 			);
 			mainGroup = F5F357B32A6E684700D7E0C4;
+			packageReferences = (
+			);
 			productRefGroup = F5F357BD2A6E684700D7E0C4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -825,6 +832,7 @@
 				F5E5C5412B30D2FC0088AC7A /* E7.mp3 in Resources */,
 				F5E5C56E2B30D2FC0088AC7A /* A2.mp3 in Resources */,
 				F5E5C5342B30D2FC0088AC7A /* C5.mp3 in Resources */,
+				F512C5402B31A32200DE9938 /* GoogleService-Info.plist in Resources */,
 				F5E5C55F2B30D2FC0088AC7A /* Ab5.mp3 in Resources */,
 				F5E5C5332B30D2FC0088AC7A /* B1.mp3 in Resources */,
 				F5E5C5402B30D2FC0088AC7A /* E3.mp3 in Resources */,

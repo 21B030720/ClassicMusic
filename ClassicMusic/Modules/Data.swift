@@ -6,13 +6,15 @@
 //
 
 import Foundation
+//import FirebaseAuth
+//import FirebaseFirestore
 
 let Profile = [
     "name": "Arslan",
     "image": "image"
 ]
 
-struct PediaData {
+struct PediaData: Codable {
     let image: String?
     let imageURL: String?
     let name: String
@@ -53,6 +55,7 @@ var likedTitles: [[String]] = []
 let imageCache = NSCache<NSString, AnyObject>()
 
 class Data {
+//    static let db = Firestore.firestore()
     static var reservedPediaData: [PediaData] = []
     static var pediaData: [PediaData] = []
     static var articleData: [ArticleData] = []
@@ -70,6 +73,7 @@ class Data {
         }
         Data.pediaData = listOfPediaData
         Data.reservedPediaData = listOfPediaData
+//        db.document("pediaData").setData(pediaData.asDictionary())
         return listOfPediaData
     }
     

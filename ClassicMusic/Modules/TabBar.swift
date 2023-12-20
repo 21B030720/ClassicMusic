@@ -12,7 +12,7 @@ class TabBar: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        connectFirebase()
 //        let appearance = UITabBarAppearance()
 //        appearance.backgroundColor = .blue
 //        tabBar.standardAppearance = appearance
